@@ -3,73 +3,95 @@ using UnityEngine;
 public class Interractable : MonoBehaviour
 {
     
-    [SerializeField] private GameObject ReliefGameObject;
-    [SerializeField] private bool isSelected=false,isAnimated=false;
-    [SerializeField] private enum Type{Door,PNJ}
-    [SerializeField] private Type ObjectType;
-    [SerializeField] private Animator ObjectAnimator;
+    [Header("Components")]
+    [Space(10)]
+        [SerializeField] private GameObject ReliefGameObject;
+        [SerializeField] private Type ObjectType;
+        [SerializeField] private Animator ObjectAnimator;
 
-    public void OnRayHit()
-    {
+    [Header("Script Datas")]
+    [Space(10)]
+        [SerializeField] private bool isSelected=false,isAnimated=false;
+        [SerializeField] private enum Type{Door,NPC}
+    
+    //ESSENTIALS
+        public void FixedUpdate()
+        {
 
-        ReliefGameObject.gameObject.SetActive(true);
-        isSelected=true;
+            if(isSelected && Input.GetKeyUp(KeyCode.Mouse1))
+            {
 
-    }
 
-    public void OnRayQuit()
-    {
+                Action();
 
-        ReliefGameObject.gameObject.SetActive(false);
-        isSelected=false;
+            }
 
-    }
+        }//Check Inputs
 
-    public void FixedUpdate()
-    {
+    //RAY GESTURE
 
-        if(isSelected && Input.GetKeyUp(KeyCode.Mouse1))
+        public void OnRayHit()
+        {
+
+            ReliefGameObject.gameObject.SetActive(true);
+            isSelected=true;
+
+        }//Display Hover Reaction
+
+        public void OnRayQuit()
+        {
+
+            ReliefGameObject.gameObject.SetActive(false);
+            isSelected=false;
+
+        }//Hide Hover Reaction
+
+    //ACTION GESTURE
+
+        public void Action()
         {
 
 
-            Action();
+            switch(ObjectType)
+            {
 
-        }
+                case Type.Door :
 
-    }
+                        DoorAnimation();
 
-    public void Action()
-    {
+                    break;
 
-        
-        Debug.Log(isAnimated);
+                case Type.NPC :
 
-        switch(ObjectType)
+                        NPCTalk();
+
+                    break;
+
+                default :
+
+                    Debug.Log("This Object Type is not defined");
+
+                    break;
+
+            }
+
+            isAnimated=!isAnimated;
+
+        }//Select The Action To Do
+
+        private void DoorAnimation()
         {
 
-            case Type.Door :
+            ObjectAnimator.SetBool("isDoorClosing",isAnimated);
+            ObjectAnimator.SetBool("isDoorOpening",!isAnimated);
 
-                ObjectAnimator.SetBool("isDoorClosing",isAnimated);
-                ObjectAnimator.SetBool("isDoorOpening",!isAnimated);
+        }//Animate The Door
 
-                break;
+        private void NPCTalk()
+        {
 
-            case Type.PNJ :
+            //
 
-                //
-
-                break;
-
-            default :
-
-                Debug.Log("This Object Type is not defined");
-
-                break;
-
-        }
-
-        isAnimated=!isAnimated;
-
-    }
+        }//Launch The Talk With This NPC
 
 }
