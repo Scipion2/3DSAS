@@ -125,9 +125,8 @@ public class Player : MonoBehaviour
 
                         InterractableHitted=Hit.collider.gameObject.GetComponent<Interractable>();
 
-                    }
-
-                    InterractableHitted.OnRayHit();
+                    }else
+                        InterractableHitted.OnRayHit();
 
                 }
 

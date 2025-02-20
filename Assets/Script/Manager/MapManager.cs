@@ -4,11 +4,12 @@ public class MapManager : MonoBehaviour
 {
     
     [SerializeField] private Tile[] TilesType;
+    [SerializeField] private int XMax,XMin,ZMax,ZMin;
 
     public void Start()
     {
 
-        SpawnMap(0,50,0,50,TilesType[0].GetPrefab());
+        SpawnMap(XMin,XMax,ZMin,ZMax,TilesType[0].GetPrefab());
 
     }
 
@@ -25,7 +26,8 @@ public class MapManager : MonoBehaviour
 
                 GameObject spawnedTile=Instantiate(TilePrefab, new Vector3(x,0,z),Quaternion.identity);
                 spawnedTile.name="x:"+x+" z:"+z;
-                Map[x,z]=spawnedTile;
+                spawnedTile.transform.SetParent(this.transform);
+                //Map[x,z]=spawnedTile;
 
             }
 
