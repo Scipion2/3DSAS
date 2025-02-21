@@ -5,22 +5,21 @@ public class Interractable : MonoBehaviour
     
     [Header("Components")]
     [Space(10)]
-        [SerializeField] private GameObject ReliefGameObject;
+        [SerializeField] protected GameObject ReliefGameObject;
         [SerializeField] private Type ObjectType;
         [SerializeField] private Animator ObjectAnimator;
 
     [Header("Script Datas")]
     [Space(10)]
-        [SerializeField] private bool isSelected=false,isAnimated=false;
-        [SerializeField] private enum Type{Door,NPC}
+        [SerializeField] protected bool isSelected=false,isAnimated=false;
+        [SerializeField] private enum Type{Door,NPC,BadNPC}
     
     //ESSENTIALS
-        public void FixedUpdate()
+        public void Update()
         {
 
             if(isSelected && Input.GetKeyUp(KeyCode.Mouse1))
             {
-
 
                 Action();
 
@@ -65,6 +64,9 @@ public class Interractable : MonoBehaviour
 
                         NPCTalk();
 
+                    break;
+
+                case Type.BadNPC :
                     break;
 
                 default :

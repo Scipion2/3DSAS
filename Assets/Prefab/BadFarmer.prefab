@@ -6145,9 +6145,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 639233881908058060}
-  - component: {fileID: 4751477142933675132}
   - component: {fileID: 1027508824994561958}
   - component: {fileID: 5894997132577462801}
+  - component: {fileID: 5800063932102561992}
+  - component: {fileID: 4600037287627643016}
   m_Layer: 3
   m_Name: BadFarmer
   m_TagString: BadNPC
@@ -6176,23 +6177,6 @@ Transform:
   - {fileID: 724683957269621685}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4751477142933675132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9075577713680751376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 979be567c14f3dd49b9476f0437c48bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ReliefGameObject: {fileID: 3408053462686048845}
-  ObjectType: 1
-  ObjectAnimator: {fileID: 1027508824994561958}
-  isSelected: 0
-  isAnimated: 0
 --- !u!95 &1027508824994561958
 Animator:
   serializedVersion: 7
@@ -6238,6 +6222,47 @@ CapsuleCollider:
   m_Height: 3.0578232
   m_Direction: 1
   m_Center: {x: 0.028850198, y: 0.52644205, z: 0}
+--- !u!195 &5800063932102561992
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9075577713680751376}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 0.1
+  m_Acceleration: 0.8
+  avoidancePriority: 50
+  m_AngularSpeed: 1
+  m_StoppingDistance: 1
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &4600037287627643016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9075577713680751376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce05771611a6491489a006ba6696e3b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReliefGameObject: {fileID: 3408053462686048845}
+  ObjectType: 2
+  ObjectAnimator: {fileID: 1027508824994561958}
+  isSelected: 0
+  isAnimated: 0
+  Agent: {fileID: 5800063932102561992}
+  Target: {fileID: 639233881908058060, guid: 85612ebbdb121d34f8695ef4784849ad, type: 3}
 --- !u!1 &9085553873040280929
 GameObject:
   m_ObjectHideFlags: 0
